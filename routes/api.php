@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/sanctum/token', [\App\Http\Controllers\Auth\AuthenticatedController::class, 'store']);
+
+
+Route::middleware('auth:sanctum')->group(function (){
+
+    Route::get('/user', function (Request $request){
+        return $request->user();
+    });
+
+    Route::apiResource('products', \App\Http\Controllers\Product\ProductController::class)->except('destroy');
+
 });
