@@ -14,6 +14,8 @@ class Cart extends Model
         'total'
     ];
 
+    protected $with = ['items.product'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

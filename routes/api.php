@@ -24,5 +24,7 @@ Route::middleware('auth:sanctum')->group(function (){
     });
 
     Route::apiResource('products', \App\Http\Controllers\Product\ProductController::class)->except('destroy');
+    Route::get('cart', [\App\Http\Controllers\Cart\CartController::class, 'index'])->name('cart.index'); //my cart
+    Route::apiResource('cart.items', \App\Http\Controllers\Cart\CartItemController::class)->except(['index', 'show']);
 
 });

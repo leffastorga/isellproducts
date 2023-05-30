@@ -27,6 +27,10 @@ class AuthenticatedController extends BaseController
         $user->last_login = now();
         $user->save();
 
+        if(!$user->cart){ //if hasn't opened cart (session) then create
+            $user->cart()->create(['total' => 0]);
+        }
+
         return $this->sendResponse($user->createToken($request->email)->plainTextToken);
     }
 }
