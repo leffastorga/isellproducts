@@ -25,4 +25,26 @@ class CartHelper extends Base {
             return false;
         }
     }
+
+    public function copyCartToOrder($cart, $order): bool{
+        try {
+            $items = $cart->items()->with('product')->get();
+            foreach ($items as $item){
+                $order->items()->create([
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'price_unit' => $item->product->price,
+                    'price_total' => ($item->quantity * $item->product->price)
+                ]);
+            }
+            //after copy to orden, then clean the cart
+            $cart->items()->delete();
+            $cart->update(['total' => 0.00]);
+            return true;
+        } catch (\Throwable $throwable){
+            $detail = $this->createDetails($throwable, $cart);
+            Log::critical('Error copying cart to order', $detail);
+            return false;
+        }
+    }
 }

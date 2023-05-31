@@ -8,6 +8,7 @@ use App\Http\Requests\Cart\StoreCartItemRequest;
 use App\Http\Requests\Cart\UpdateCartItemRequest;
 use App\Models\Cart\Cart;
 use App\Models\Cart\CartItem;
+use Illuminate\Support\Facades\Auth;
 
 class CartItemController extends BaseController
 {
@@ -49,6 +50,9 @@ class CartItemController extends BaseController
      */
     public function destroy(Cart $cart, CartItem $item)
     {
+        if(Auth::id() !== $cart->user_id){
+            abort(404);
+        }
         $item->delete();
         if(!$this->cartHelper->updateCart($cart)){
             return $this->sendError('ERROR_CART', 'Something went wrong updating the cart. Try again.');

@@ -19,12 +19,18 @@ Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 
 
 Route::middleware('auth:sanctum')->group(function (){
 
-    Route::get('/user', function (Request $request){
+    Route::get('/me', function (Request $request){
         return $request->user();
     });
+
+    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 
     Route::apiResource('products', \App\Http\Controllers\Product\ProductController::class)->except('destroy');
     Route::get('cart', [\App\Http\Controllers\Cart\CartController::class, 'index'])->name('cart.index'); //my cart
     Route::apiResource('cart.items', \App\Http\Controllers\Cart\CartItemController::class)->except(['index', 'show']);
+    Route::apiResource('payments', \App\Http\Controllers\Payment\PaymentController::class)->except('update');
+    Route::apiResource('orders', \App\Http\Controllers\Order\OrderController::class)->except(['destroy']);
+
+    Route::get('my/orders', [\App\Http\Controllers\Order\OrderController::class, 'myOrders'])->name('my.orders');
 
 });
