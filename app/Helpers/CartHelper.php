@@ -22,6 +22,7 @@ class CartHelper extends Base {
         } catch (\Throwable $throwable){
             $detail = $this->createDetails($throwable, $cart);
             Log::critical('Error updating cart', $detail);
+            //EMAIL TO ADMINS THAT SOMETHING IS WRONG
             return false;
         }
     }
@@ -44,6 +45,7 @@ class CartHelper extends Base {
         } catch (\Throwable $throwable){
             $detail = $this->createDetails($throwable, $cart);
             Log::critical('Error copying cart to order', $detail);
+            //EMAIL TO ADMINS THAT SOMETHING IS WRONG
             return false;
         }
     }

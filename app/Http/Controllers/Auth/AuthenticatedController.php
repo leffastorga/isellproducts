@@ -19,6 +19,7 @@ class AuthenticatedController extends BaseController
 
         //Attempt login
         if (!$user || !Hash::check($request->password, $user->password)) {
+            //THROTTLE block user after 3 attempts
             return $this->sendError('WRONG_USER_PASS');
         }
 

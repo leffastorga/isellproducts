@@ -1,0 +1,21 @@
+{
+	"id": "256afdac-8d3c-4e67-8710-5a339f37e161",
+	"name": "SellProducts env",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-05-31T13:21:15.101Z",
+	"_postman_exported_using": "Postman/10.14.6"
+}

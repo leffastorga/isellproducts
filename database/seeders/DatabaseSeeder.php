@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Payment\PaymentMethod;
+use App\Models\Product\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,10 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(1)->create();
+        $user = \App\Models\User::factory()->create();
 
         PaymentMethod::create(['name' => 'Credit Card']);
         PaymentMethod::create(['name' => 'Paypal']);
 
+        Product::factory(20)->create([
+           'created_by' => $user->id
+        ]);
     }
 }

@@ -54,6 +54,7 @@ class ProductController extends BaseController
             'price' => $request->price,
             'deactivated_at' => ($request->deactivate) ? now() : null
         ]);
+        //HERE MUST GO TO ALL CARTS AND UPDATE THE PRICE AND TOTALS
         return $this->sendResponse($product->load('user:id,first_name,last_name'));
     }
 
