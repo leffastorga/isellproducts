@@ -11,7 +11,7 @@ Technical info:
 Steps:
 
 - Clone repository
-- copy .env.example to .env
+- copy .env.example to .env (set DB creds and create a db schema)
 - run command: composer install
 - run command: php artisan key:generate
 - run command: php artisan migrate --seed
@@ -27,7 +27,7 @@ Seeder will create by default:
 
 ### Simple Flow
 
-- Register a new customer - Register endpoint
+- Register a new customer - Register endpoint (by default this endpoint creates only customers - is_admin = false)
 - Login with the new customer - GET auth token
 - Copy token which placed in data parameter and paste it on token enviroment variable.
 - GET id of my cart - Get my cart endpoint (get cart by token, so no parameters)
