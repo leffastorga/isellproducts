@@ -15,6 +15,7 @@ Steps:
 - run command: composer install
 - run command: php artisan key:generate
 - run command: php artisan migrate --seed
+- run command: php artisan serve
 - import collection json file (Sell Products API.collection.json) to postman for endpoints
 - import environment (for baseUrl and token) - environment.json
 
@@ -30,6 +31,13 @@ Seeder will create by default:
 - Register a new customer - Register endpoint (by default this endpoint creates only customers - is_admin = false)
 - Login with the new customer - GET auth token
 - Copy token which placed in data parameter and paste it on token enviroment variable.
+````
+{
+    "success": true,
+    "data": "1|5haLav8up3EmXtQ5d4mkTbTeTfGVlRZAS4U2zvZw",
+    "message": ""
+}
+````
 - GET id of my cart - Get my cart endpoint (get cart by token, so no parameters)
 - GET products to get ID of product
 - Add item to my cart - Create cart item endpoint (product id and quantity)
