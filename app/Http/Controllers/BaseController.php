@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller as Controller;
 
 class BaseController extends Controller
 {
+
+    //FORMAT FOR API RESPONSES
+
     /**
      * success response method.
      *
